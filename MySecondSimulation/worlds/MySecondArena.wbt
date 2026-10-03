@@ -10,7 +10,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
-  position 3.208890462439627e-06 3.208899535597172e-06 2.993662670953173
+  position -2.576003036205386e-07 -2.576010328926712e-07 1.7677278705784898
   follow "e-puck"
   followType "None"
 }
@@ -37,5 +37,5 @@ WoodenBox {
   size 0.1 0.1 0.1
 }
 E-puck {
-  controller "MySecondControllerSln2"
+  controller "MySecondControllerSln"
 }

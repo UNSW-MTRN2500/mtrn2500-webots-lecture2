@@ -16,7 +16,7 @@
 
 const int TIME_STEP {64};
 const double MAX_SPEED {6.28};
-const int NUM_DIST_SENSORS {8};
+const int N_DIST_SENSORS {8};
 
 int main(int argc, char **argv) {
 
@@ -27,12 +27,12 @@ int main(int argc, char **argv) {
   // and not responsible for freeing them 
 
   // initialise distance sensors
-  std::array<webots::DistanceSensor*, NUM_DIST_SENSORS> ps {};
-  std::array<std::string, NUM_DIST_SENSORS> psNames {
+  std::array<webots::DistanceSensor*, N_DIST_SENSORS> ps {};
+  std::array<std::string, N_DIST_SENSORS> psNames {
     "ps0", "ps1", "ps2", "ps3",
     "ps4", "ps5", "ps6", "ps7"
   };
-  for (int i {0}; i < NUM_DIST_SENSORS; ++i) {
+  for (int i {0}; i < N_DIST_SENSORS; ++i) {
     ps[i] = robot.getDistanceSensor(psNames[i]);
     ps[i]->enable(TIME_STEP);
   }
@@ -53,8 +53,8 @@ int main(int argc, char **argv) {
   while(robot.step(TIME_STEP) != -1) {
 
     // read sensors outputs
-    std::array<double, NUM_DIST_SENSORS> psValues {};
-    for(int i {0}; i < NUM_DIST_SENSORS; ++i) {
+    std::array<double, N_DIST_SENSORS> psValues {};
+    for(int i {0}; i < N_DIST_SENSORS; ++i) {
       psValues[i] = ps[i]->getValue();
     }
     
