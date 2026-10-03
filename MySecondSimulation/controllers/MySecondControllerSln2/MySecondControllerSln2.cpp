@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
 
   // initialise distance sensors
   std::array<webots::DistanceSensor*, N_DIST_SENSORS> ps {};
-  std::array<std::string, N_DIST_SENSORS> psNames {
+  const std::array<std::string, N_DIST_SENSORS> psNames {
     "ps0", "ps1", "ps2", "ps3",
     "ps4", "ps5", "ps6", "ps7"
   };
