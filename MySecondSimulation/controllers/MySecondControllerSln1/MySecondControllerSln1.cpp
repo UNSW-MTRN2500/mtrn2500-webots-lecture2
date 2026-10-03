@@ -7,7 +7,6 @@
 #include <webots/Robot.hpp>
 #include <webots/Motor.hpp>
 #include <webots/DistanceSensor.hpp>
-#include <webots/Keyboard.hpp>
 
 #include <array>
 #include <string>
@@ -45,10 +44,6 @@ int main(int argc, char **argv) {
   leftMotor->setVelocity(0.0);
   rightMotor->setVelocity(0.0);
   
-  // initialise keyboard
-  webots::Keyboard* keyboard {robot.getKeyboard()};
-  keyboard->enable(TIME_STEP);
-
   // feedback loop: step simulation until an exit event is received
   while(robot.step(TIME_STEP) != -1) {
 
@@ -88,25 +83,15 @@ int main(int argc, char **argv) {
     double leftSpeed {speedScale * MAX_SPEED};
     double rightSpeed {speedScale * MAX_SPEED};
     
-    int k {keyboard->getKey()};
-    // std::cout << k << std::endl;
-    if(k == 'T') { // Turn right
+    // modify speeds according to obstacles
+    if(leftObstacle) {
+      // turn right
       leftSpeed  = speedScale * MAX_SPEED;
       rightSpeed = -speedScale * MAX_SPEED;
-    } else if(k == 'B') { // Backward
+    } else if(rightObstacle) {
+      // turn left
       leftSpeed  = -speedScale * MAX_SPEED;
-      rightSpeed = -speedScale * MAX_SPEED;    
-    } else { // Roam
-      // modify speeds according to obstacles
-      if(leftObstacle) {
-        // turn right
-        leftSpeed  = speedScale * MAX_SPEED;
-        rightSpeed = -speedScale * MAX_SPEED;
-      } else if(rightObstacle) {
-        // turn left
-        leftSpeed  = -speedScale * MAX_SPEED;
-        rightSpeed = speedScale * MAX_SPEED;
-      }
+      rightSpeed = speedScale * MAX_SPEED;
     }
     
     // for debugging, you can print the speeds to the console

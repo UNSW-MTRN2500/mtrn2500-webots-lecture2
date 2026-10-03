@@ -1,4 +1,4 @@
-// File:          MySecondControllerSln.cpp
+// File:          MySecondControllerSln2.cpp
 // Date:
 // Description:
 // Author:
@@ -17,6 +17,8 @@
 const int TIME_STEP {64};
 const double MAX_SPEED {6.28};
 const int N_DIST_SENSORS {8};
+
+enum class STATE {ROAM, TURN, BACKWARD};
 
 int main(int argc, char **argv) {
 
@@ -48,6 +50,8 @@ int main(int argc, char **argv) {
   // initialise keyboard
   webots::Keyboard* keyboard {robot.getKeyboard()};
   keyboard->enable(TIME_STEP);
+  
+  STATE state {STATE::ROAM};
 
   // feedback loop: step simulation until an exit event is received
   while(robot.step(TIME_STEP) != -1) {
@@ -90,13 +94,22 @@ int main(int argc, char **argv) {
     
     int k {keyboard->getKey()};
     // std::cout << k << std::endl;
-    if(k == 'T') { // Turn right
+    
+    if(k == 'T') {
+      state = STATE::TURN;
+    } else if(k == 'B') {
+      state = STATE::BACKWARD;
+    } else if(k == 'R') {
+      state = STATE::ROAM;
+    }
+    
+    if(state == STATE::TURN) { // Turn right
       leftSpeed  = speedScale * MAX_SPEED;
       rightSpeed = -speedScale * MAX_SPEED;
-    } else if(k == 'B') { // Backward
+    } else if(state == STATE::BACKWARD) { // Backward
       leftSpeed  = -speedScale * MAX_SPEED;
       rightSpeed = -speedScale * MAX_SPEED;    
-    } else { // Roam
+    } else if(state == STATE::ROAM) { // Roam
       // modify speeds according to obstacles
       if(leftObstacle) {
         // turn right

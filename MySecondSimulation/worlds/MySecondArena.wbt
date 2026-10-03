@@ -37,5 +37,5 @@ WoodenBox {
   size 0.1 0.1 0.1
 }
 E-puck {
-  controller "MySecondControllerSln"
+  controller "MySecondControllerSln1"
 }

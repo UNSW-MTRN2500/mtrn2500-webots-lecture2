@@ -5,7 +5,7 @@ sceneTreePerspectives: 000000ff00000001000000030000002600000272000000fa010000000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 0 "controllers/MySecondControllerSln/MySecondControllerSln.cpp" "controllers/MySecondControllerSln2/MySecondControllerSln2.cpp"
+textFiles: 0 "controllers/MySecondControllerSln1/MySecondControllerSln1.cpp" "controllers/MySecondControllerSln2/MySecondControllerSln2.cpp" "controllers/MySecondControllerSln3/MySecondControllerSln3.cpp"
 globalOptionalRendering: DistanceSensorRays
 consoles: Console:All:All
 renderingDevicePerspectives: e-puck:camera;0;1;0;0
